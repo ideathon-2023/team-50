@@ -2,8 +2,10 @@
  - Ribhav Aggarwal
 # Techstack: Unity, C#, Blender, etc.
 # Running:
-Need unity 2022.3.5f1 or later, and download all assets before running
-Keep folder locations same
+-Need unity 2022.3.5f1 or later
+-Download the complete project folder "Cards"
+-Add project from Unity Hub
+-No need for "Blender" folder
 
 # Idea:
 - An app/game which is a collection of classic card games, famous(like bluff) and unknown(tbd which ones exaclty)
