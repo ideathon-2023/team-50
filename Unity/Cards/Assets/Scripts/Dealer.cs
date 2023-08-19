@@ -81,14 +81,69 @@ public class Dealer : MonoBehaviour
     }
 
     public void Distribute(){
-        float z_off = 0;
+        //float x_off = 0;
+        float y_off = 0.0002f;
+        float angle_off = 10.0f;
+        float ang = -60.0f;
+        //Create dedicated function or script for this
+
+        Vector3 loc = P1.transform.position;
+        loc.z += 0.5f;
+        Vector3 rot = loc;
+        rot.z -= 0.5f;
         for(int i = 0; i<13; i++){
             GameObject Card = FindChild(deck_object,deck[i]);
-            Vector3 loc = P1.transform.position;
-            loc.x += z_off*(float)(Math.Pow(-1,i));       
+            //loc.x += x_off*(float)(Math.Pow(-1,i));
+            //rot.x -=0.3f;
+            //loc.x -= 0.5f;
+            
+            loc.y += y_off*(float)(i+1);            
             Card.transform.position = loc;
-            Card.transform.Rotate(180.0f,0.0f,0.0f);
-            z_off += 0.75F*(float)((i%2) - 1);
+            Card.transform.Rotate(180.0f,0.0f,0.0f); //face up
+            
+            Card.transform.RotateAround(rot, Vector3.up, ang);
+            ang += angle_off;   
+            //x_off += 0.75F*(float)((i%2) - 1);
+        }
+        loc = P3.transform.position;
+        rot = loc;
+        loc.z -= 0.5f;
+        ang = -60;
+        for(int i = 13; i<26; i++){
+            GameObject Card = FindChild(deck_object,deck[i]);
+            loc.y += y_off*(float)(i+1);            
+            Card.transform.position = loc;
+            
+            Card.transform.RotateAround(rot, Vector3.down, ang);
+            ang += angle_off;
+        }
+
+        loc = P4.transform.position;
+        rot = loc;
+        loc.x -= 0.5f;
+        ang = -60;
+        for(int i = 26; i<39; i++){
+            GameObject Card = FindChild(deck_object,deck[i]);
+            loc.y += y_off*(float)(i+1);            
+            Card.transform.position = loc;
+            //Card.transform.Rotate(0.0f,90.0f,90.0f); //find a way to just change one axis; prolly vector3.up
+            Card.transform.RotateAround(loc,Vector3.up,90.0f); 
+            Card.transform.RotateAround(rot, Vector3.up, ang);
+            ang += angle_off;
+        }
+
+        loc = P2.transform.position;
+        rot = loc;
+        loc.x += 0.5f;
+        ang = -60;
+        for(int i =39; i<52; i++){
+            GameObject Card = FindChild(deck_object,deck[i]);
+            loc.y += y_off*(float)(i+1);            
+            Card.transform.position = loc;
+            //Card.transform.Rotate(0.0f,90.0f,90.0f); //find a way to just change one axis; prolly vector3.up
+            Card.transform.RotateAround(loc,Vector3.up,-90.0f); 
+            Card.transform.RotateAround(rot, Vector3.up, ang);
+            ang += angle_off;
         }
 
     }
